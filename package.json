@@ -33,7 +33,8 @@
         "nxapi": "bin/nxapi.js"
     },
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "build:mobile": "tsc",
+        "mobile": "node dist/mobile/server.js"
     },
     "dependencies": {
         "@samuelthomas2774/saltpack": "^0.4.0",

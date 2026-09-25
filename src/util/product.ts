@@ -91,4 +91,12 @@ export const product = 'nxapi ' + version +
     (!release && git ? '-' + git.revision.substr(0, 7) + (git.branch ? ' (' + git.branch + ')' : '') :
         !release ? '-?' : '');
 
-export const paths = getPaths('nxapi');
+const default_paths = getPaths('nxapi');
+const mobile_data_path = process.env.NXAPI_DATA_PATH;
+export const paths = mobile_data_path ? {
+    data: mobile_data_path,
+    config: path.join(mobile_data_path, 'config'),
+    cache: path.join(mobile_data_path, 'cache'),
+    log: path.join(mobile_data_path, 'log'),
+    temp: path.join(mobile_data_path, 'temp'),
+} : default_paths;

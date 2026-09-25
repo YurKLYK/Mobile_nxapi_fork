@@ -2,7 +2,7 @@
     "require_version": [],
     "log_encryption_key": "E2Sii_7drCzK-68RsEoArmopiAIlZD_6TMA2F_UAAU0",
     "coral": {
-        "znca_version": "3.3.0"
+        "znca_version": "3.5.0"
     },
     "coral_auth": {
         "default": [
@@ -21,8 +21,14 @@
         "blanco_version": "2.1.1"
     },
     "coral_gws_splatnet3": {
-        "app_ver": "4.0.0-091d4283",
-        "version": "4.0.0",
-        "revision": "091d428399dc86fd3a7fc43d64bd33b8bd1e875d"
+        "app_ver": "10.0.0-dfefd0af",
+        "version": "10.0.0",
+        "revision": "dfefd0af8969f0c27f0ff6a8d6bc1f75e3da9df5",
+        "map_queries": {
+            "9b6b90568f990b2a14f04c25dd6eb53b35cc12ac815db85ececfccee64215edd": [
+                "4d18c17431b591452e7baab6e29d98dcf1bdc5eebe3a7b693d768e80c0d5ccef",
+                true
+            ]
+        }
     }
 }

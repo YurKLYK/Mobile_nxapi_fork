@@ -20,14 +20,24 @@ export async function getBulletToken(
         throw new Error('Invalid token');
     }
 
-    const existingToken: SavedBulletToken | undefined = await storage.getItem('BulletToken.' + token);
+    let existingToken: SavedBulletToken | undefined = await storage.getItem('BulletToken.' + token);
+    const { default: { coral_gws_splatnet3: config } } = await import('../remote-config.js');
+
+    // A bullet token also stores the SplatNet web app version and persisted-query
+    // mappings. Reusing it after Nintendo updates the web app makes every request
+    // look obsolete until the token naturally expires.
+    if (existingToken && config && existingToken.version !== config.app_ver) {
+        debug('Discarding token for obsolete SplatNet 3 web app version %s (current %s)',
+            existingToken.version, config.app_ver);
+        await storage.removeItem('BulletToken.' + token);
+        existingToken = undefined;
+    }
 
     if (!existingToken || existingToken.expires_at <= Date.now()) {
         if (!allow_fetch_token) {
             throw new Error('No valid bullet_token');
         }
 
-        const { default: { coral_gws_splatnet3: config } } = await import('../remote-config.js');
         if (!config) throw new Error('Remote configuration prevents SplatNet 3 authentication');
 
         const {nso, data} = await getToken(storage, token, proxy_url);
