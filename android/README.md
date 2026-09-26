@@ -1,5 +1,7 @@
 # nxapi Mobile for Android
 
+[English](README.md) · [日本語](../README.ja.md)
+
 This directory contains the standalone Android port of nxapi. It embeds Node.js,
 serves the mobile UI only on `127.0.0.1`, and connects to the Discord Android app
 through the Discord Social SDK.
